@@ -40,6 +40,18 @@ export default class App extends Component<Props> {
       });
     });
   }
+  getFactorial = arg => {
+    let result = 1;
+    if (arg == 0){
+      return 1;
+    }else {
+      while (arg > 0){
+        result = result * arg;
+        arg--;
+      }
+      return result;
+    }
+  };
   makeOperation(operation) {
     let result = 0;
     if (operation != '=') {
@@ -62,7 +74,10 @@ export default class App extends Component<Props> {
           result = parseFloat(this.state.resultText) * 3.14;
           break;
         case 'ln':
-          result = Math.log(this.state.resultText);
+          result = Math.log(parseFloat(this.state.resultText));
+          break;
+        case '!':
+          result = this.getFactorial(parseFloat(this.state.resultText));
           break;
       }
     } else {
